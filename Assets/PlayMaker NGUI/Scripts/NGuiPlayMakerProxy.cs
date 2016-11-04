@@ -87,6 +87,9 @@ public enum NGuiPlayMakerDelegates {
 	
 		[PlayMakerUtils_FsmEvent("NGUI / ON CHANGE")]
 		OnChangeEvent,
+
+		[PlayMakerUtils_FsmEvent("NGUI / ON CENTER ON CHILD")]
+		OnCenterOnChildEvent
 }
 	
 

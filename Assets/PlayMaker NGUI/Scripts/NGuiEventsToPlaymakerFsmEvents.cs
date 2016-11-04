@@ -31,7 +31,8 @@ public class NGuiEventsToPlaymakerFsmEvents : MonoBehaviour
 	private UIInput _input;
 	private UIProgressBar _pBar;
 	private UIToggle _toggle;
-	
+	private UICenterOnChild _CoC;
+
 	public int getUsage(NGuiPlayMakerDelegates fsmEventDelegate)
 	{
 		//Debug.Log("get usage for "+fsmEventDelegate);
@@ -82,7 +83,8 @@ public class NGuiEventsToPlaymakerFsmEvents : MonoBehaviour
 			}
 			
 		}
-		
+
+
 		// check if we are using on Slider change
 		if (DoesTargetImplementsEvent(targetFSM,NGuiPlayMakerDelegates.OnSliderChangeEvent))
 		{
@@ -120,6 +122,19 @@ public class NGuiEventsToPlaymakerFsmEvents : MonoBehaviour
 				_del.methodName = "OnChange";
 				_toggle.onChange.Add(_del);
 			}
+		}
+
+		
+		
+		// check if we are using on Slider change
+		if (DoesTargetImplementsEvent(targetFSM,NGuiPlayMakerDelegates.OnCenterOnChildEvent))
+		{
+			_CoC = this.GetComponent<UICenterOnChild>();
+			if (_CoC!=null)
+			{
+				_CoC.onCenter += OnCenterOnChild;
+			}
+			
 		}
 
 	}
@@ -377,6 +392,22 @@ public class NGuiEventsToPlaymakerFsmEvents : MonoBehaviour
 	
 		FireNGUIPlayMakerEvent(NGuiPlayMakerDelegates.OnChangeEvent);
 	}
+
+	void OnCenterOnChild(GameObject centeredObject)
+	{
+		if (!enabled || targetFSM == null) return;
+		
+		_usage[(int)NGuiPlayMakerDelegates.OnChangeEvent] ++;
+		
+		if (_CoC!=null)
+		{
+			Fsm.EventData.GameObjectData = _CoC.centeredObject;
+			if (debug) Debug.Log("NGuiEventsToPlaymakerFsmEvents UICenterOnChild OnCenterOnChild("+_CoC.centeredObject+") to "+targetFSM.gameObject.name+"/"+targetFSM.FsmName);
+		}
+
+		FireNGUIPlayMakerEvent(NGuiPlayMakerDelegates.OnCenterOnChildEvent);
+	}
+
 	
 	public void SetCurrentSelection ()
 	{
