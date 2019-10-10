@@ -69,7 +69,6 @@ public class NGuiEventsToPlaymakerFsmEventsInspector : Editor
 			}
 		}
 		
-		EditorGUIUtility.LookLikeControls();
 	}
 	
 	public void OnGUI_DrawNGuiEventImplementation(PlayMakerFSM fsm)

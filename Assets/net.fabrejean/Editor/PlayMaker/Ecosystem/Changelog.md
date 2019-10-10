@@ -1,5 +1,66 @@
 #Ecosystem Change log
 
+###0.6.4
+**Release:** 23/01/2019 
+
+**Fixed:** moved JSON into namespace  Net.FabreJean.UnityEditor to avoid conflict with other publishers using JSON too.
+
+###0.6.3
+**Release:** 8/11/2018 
+
+**Update:** Remove WWW obsolete warnings on 2018.3 and newer
+
+###0.6.2
+**Release:** 18/10/2018 
+
+**New:** authoring tool updated for latest unity and playmaker versions and 2018 github rep
+
+
+###0.6.1
+**Release:** 28/03/2018 
+
+**New:** Support for Unity 2018 
+
+###0.6
+**Release:** 26/02/2018 
+
+**New:** Added new function to be able to auto search from another script. 
+**New:** New Scripting define symbols for `ECOSYSTEM` and `ECOSYSTEM_0_6`. 
+
+**Change:** string searchString = "";  TO static string searchString = ""; (to be able to access from another scrips).  
+**Change:** private List<PlayMakerEcosystemFilters> searchFilters;  TO  private static List<PlayMakerEcosystemFilters> searchFilters;  (to be able to access from another scrips)   
+
+**Update:** Scripting define symbols routine to mount and unmount updated ( taken from Playmaker Editor Utils)
+
+###0.5.3
+**Release:** 03/08/2017  
+
+**Fix:** Addon menu item properly indexed to not end up first.
+
+###0.5.2
+**Release:** 01/08/2017  
+
+**New:** Added verification protocol to accept server's certificates, trying to resolve empty return from queries
+
+###0.5.1
+**Release:** 24/07/2017  
+
+**Update:** Fixed Support for Unity 2017.0 and 2017.1
+
+**Fix**: Fixed bad compile flag for obsolete .title property of EditorWindow
+
+###0.5 
+**Release:** 24/07/2017  
+
+**Known Issue:** Unity 2017.0 and 2017.1 have the www class redirect url [broken](https://issuetracker.unity3d.com/issues/www-dot-url-truncates-redirected-url-if-it-should-have-contained-spaces), so the Ecosystem browser doesn't work on these two versions. Implemented defines check to warn and prevent using the Browser in these versions
+
+**Update:** Compatibility with Unity 2017, Unity 2017 WWW Class broke the .url parameter by changing it to reflect redirections, so the url set when creating the WWW Class is not necessary the one when done.  
+So now a new unique local Id for each browser requests is maintained on the client side, passed to the server which will pass it on to the redirection url, when a www instance is done, it's the uid parameter that is used to reference the content and not the url.
+
+**New:** `EcosystemUtils` url query parameters methods to add and get parameters  
+
+###0.4.9 alpha
+**Removed:** https://snipt.net/ support removed, snipt got deprecated, service is unavailable 
 
 ###0.4.8 alpha 
 **Improvement**: new overlay UI technic for mouse overing while letting list width adjust properly   
